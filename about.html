@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>关于 - 谢琬滢 Xiewanying</title>
+    <meta name="description" content="谢琬滢的个人优势、工作经历、获奖参展与合作方式。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body data-page="about">
+    <header class="site-header" data-header>
+      <div class="header-top">
+        <button class="menu-toggle" type="button" aria-label="打开菜单" data-drawer-open>
+          <span></span>
+          <span></span>
+        </button>
+        <a class="site-logo" href="./index.html">Xiewanying</a>
+        <div class="header-actions" data-header-actions></div>
+      </div>
+      <div class="header-tabs">
+        <a href="./about.html" class="is-active">关于</a>
+        <a href="./project.html">项目</a>
+        <a href="./index.html?tab=photography">摄影</a>
+        <a href="./index.html?tab=video">视频</a>
+      </div>
+    </header>
+
+    <aside class="drawer" aria-hidden="true" data-drawer>
+      <div class="drawer__panel">
+        <div class="drawer__head">
+          <p>Menu</p>
+          <button type="button" aria-label="关闭菜单" data-drawer-close>Close</button>
+        </div>
+        <div class="drawer__body" data-drawer-body></div>
+      </div>
+    </aside>
+
+    <div class="modal" aria-hidden="true" data-wechat-modal>
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" aria-label="关闭微信二维码" data-modal-close>
+          Close
+        </button>
+        <img src="./assets/contact/wechat-qr.jpg" alt="微信二维码" />
+        <p>微信：Anniebyblue</p>
+      </div>
+    </div>
+
+    <main class="about-page" id="top">
+      <section class="about-intro content-wide reveal-on-scroll">
+        <div class="about-intro__content">
+          <div class="about-intro__layout">
+            <div class="about-intro__copy">
+              <h1 class="page-title">About</h1>
+              <div class="about-intro-copy" data-about-intro></div>
+            </div>
+            <div class="about-intro__visual" aria-label="关于我的创作形象">
+              <figure class="about-dual-reveal" data-dual-reveal>
+                <img
+                  class="about-dual-reveal__layer about-dual-reveal__layer--illustration"
+                  src="./assets/about/about-mobius.jpg"
+                  alt="谢琬滢莫比斯风格插画肖像"
+                  data-portrait-illustration
+                />
+                <img
+                  class="about-dual-reveal__layer about-dual-reveal__layer--real"
+                  src="./assets/about/about-real.jpg"
+                  alt="谢琬滢真实肖像"
+                  data-portrait-real
+                />
+                <button
+                  class="about-dual-reveal__switch"
+                  type="button"
+                  aria-label="切换前后肖像"
+                  title="点击右下角切换"
+                  data-dual-reveal-switch
+                ></button>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section content-wide reveal-on-scroll">
+        <div class="about-section-block">
+          <h2 class="section-title">关注领域</h2>
+          <div class="about-focus-tags" data-about-focus></div>
+        </div>
+      </section>
+
+      <section class="about-section content-wide reveal-on-scroll">
+        <div class="about-section-block">
+          <h2 class="section-title">工作轨迹</h2>
+          <div class="about-timeline" data-experience-list></div>
+        </div>
+      </section>
+
+      <section class="about-section content-wide reveal-on-scroll">
+        <div class="about-section-block">
+          <h2 class="section-title">获奖经历</h2>
+          <div class="about-awards" data-honor-list></div>
+        </div>
+      </section>
+
+      <section class="about-section content-wide reveal-on-scroll" id="contact">
+        <div class="about-contact-block about-contact-block--minimal">
+          <div class="contact-panel" data-contact-panel></div>
+        </div>
+      </section>
+    </main>
+
+    <a class="back-to-top" href="#top" aria-label="返回顶部">Top</a>
+
+    <script src="./data.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

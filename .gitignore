@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 工作笔记（不要上 GitHub）
+HANDOFF.md
+context-for-ai.md
+sync-obsidian.sh
+
+# Netlify 配置（项目改用 Vercel）
+netlify.toml
+
+# 脚本目录（仅供本地使用）
+scripts/
+
+# 构建产物
+node_modules/
+dist/
+build/
+out/
+*.log

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>项目 - 谢琬滢 Xiewanying</title>
+    <meta name="description" content="谢琬滢的项目作品集，涵盖落地、洞察、创造三类代表性项目。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&family=Patrick+Hand&family=Playfair+Display:wght@600;700&family=Noto+Serif+SC:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  </head>
+  <body data-page="project">
+    <header class="site-header" data-header>
+      <div class="header-top">
+        <button class="menu-toggle" type="button" aria-label="打开菜单" data-drawer-open>
+          <span></span>
+          <span></span>
+        </button>
+        <a class="site-logo" href="./index.html">Xiewanying</a>
+        <div class="header-actions" data-header-actions></div>
+      </div>
+      <div class="header-tabs">
+        <a href="./about.html">关于</a>
+        <a href="./project.html" class="is-active">项目</a>
+        <a href="./index.html?tab=photography">摄影</a>
+        <a href="./index.html?tab=video">视频</a>
+      </div>
+    </header>
+
+    <aside class="drawer" aria-hidden="true" data-drawer>
+      <div class="drawer__panel">
+        <div class="drawer__head">
+          <p>Menu</p>
+          <button type="button" aria-label="关闭菜单" data-drawer-close>Close</button>
+        </div>
+        <div class="drawer__body" data-drawer-body></div>
+      </div>
+    </aside>
+
+    <div class="modal" aria-hidden="true" data-wechat-modal>
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" aria-label="关闭微信二维码" data-modal-close>Close</button>
+        <img src="./assets/contact/wechat-qr.jpg" alt="微信二维码" />
+        <p>微信：Anniebyblue</p>
+      </div>
+    </div>
+
+    <main class="project-page" id="top" data-project-main></main>
+
+    <a class="back-to-top" href="#top" aria-label="返回顶部">Top</a>
+
+    <script src="./data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
