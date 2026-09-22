@@ -216,7 +216,27 @@
         <p class="drawer-signature__name">谢琬滢</p>
         <button class="drawer-signature__phone" type="button" data-copy-value="${siteMeta.contact.phone}" data-copy-label="电话已复制">${siteMeta.contact.phone}</button>
       </section>
+      <section class="drawer-contacts" aria-label="联系方式">
+        <p class="drawer-contacts__label">Contact</p>
+        <div class="drawer-contacts__icons">
+          <a href="${siteMeta.contact.weibo}" target="_blank" rel="noopener" aria-label="微博" title="微博">${iconMarkup("weibo")}</a>
+          <a href="${siteMeta.contact.xiaohongshu}" target="_blank" rel="noopener" aria-label="小红书" title="小红书">${iconMarkup("xiaohongshu")}</a>
+          <button type="button" data-wechat-trigger aria-label="微信二维码" title="微信">${iconMarkup("wechat")}</button>
+          <button type="button" data-copy-value="${siteMeta.contact.phone}" data-copy-label="电话已复制" aria-label="复制电话" title="电话">${iconMarkup("phone")}</button>
+          <button type="button" data-copy-value="${siteMeta.contact.email}" data-copy-label="邮箱已复制" aria-label="复制邮箱" title="邮箱">${iconMarkup("mail")}</button>
+        </div>
+        <div class="drawer-contacts__row">
+          <span class="drawer-contacts__label">邮箱</span>
+          <button type="button" data-copy-value="${siteMeta.contact.email}" data-copy-label="邮箱已复制" class="drawer-contacts__value">${siteMeta.contact.email}</button>
+        </div>
+        <div class="drawer-contacts__row">
+          <span class="drawer-contacts__label">微信</span>
+          <button type="button" data-wechat-trigger class="drawer-contacts__value">${siteMeta.contact.wechat || "Anniebyblue"}</button>
+        </div>
+      </section>
     `;
+    // 重新绑定抽屉内的事件（抽屉是动态渲染的）
+    initContactActions();
   }
 
   function initDrawer() {
@@ -577,7 +597,11 @@
       const asset = main.querySelector("[data-lightbox-asset]");
       if (asset) {
         let dragging = false, dragStartX = 0, dragStartY = 0, panX = 0, panY = 0;
+        let pinchStartDist = 0, pinchStartScale = 1;
+        let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
         const applyPan = () => { asset.style.transform = `scale(${state.lightboxScale}) translate(${panX}px, ${panY}px)`; };
+
+        // ---- Desktop：鼠标拖动平移（仅放大时） ----
         asset.addEventListener("mousedown", (e) => {
           if (state.lightboxScale <= 1) return;
           dragging = true; dragStartX = e.clientX - panX; dragStartY = e.clientY - panY;
@@ -589,6 +613,74 @@
         });
         window.addEventListener("mouseup", () => {
           if (dragging) { dragging = false; asset.classList.remove("is-dragging"); }
+        });
+
+        // ---- Mobile：触摸滑动 + 双指缩放 + 拖动平移 ----
+        const touchDist = (t) => {
+          const dx = t[0].clientX - t[1].clientX;
+          const dy = t[0].clientY - t[1].clientY;
+          return Math.sqrt(dx * dx + dy * dy);
+        };
+
+        asset.addEventListener("touchstart", (e) => {
+          if (e.touches.length === 2) {
+            // 双指：开始 pinch
+            pinchStartDist = touchDist(e.touches);
+            pinchStartScale = state.lightboxScale;
+            dragging = false;
+            e.preventDefault();
+            return;
+          }
+          if (e.touches.length === 1) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchStartTime = Date.now();
+            if (state.lightboxScale > 1) {
+              dragging = true;
+              dragStartX = e.touches[0].clientX - panX;
+              dragStartY = e.touches[0].clientY - panY;
+            }
+          }
+        }, { passive: false });
+
+        asset.addEventListener("touchmove", (e) => {
+          if (e.touches.length === 2 && pinchStartDist > 0) {
+            // pinch 缩放
+            const dist = touchDist(e.touches);
+            const nextScale = pinchStartScale * (dist / pinchStartDist);
+            updateLightboxScale(nextScale);
+            e.preventDefault();
+            return;
+          }
+          if (e.touches.length === 1 && dragging) {
+            // 单指拖动平移（放大时）
+            panX = e.touches[0].clientX - dragStartX;
+            panY = e.touches[0].clientY - dragStartY;
+            applyPan();
+            e.preventDefault();
+          }
+        }, { passive: false });
+
+        asset.addEventListener("touchend", (e) => {
+          if (pinchStartDist > 0 && e.touches.length < 2) {
+            pinchStartDist = 0;
+          }
+          if (e.touches.length === 0) {
+            // 单指松开：判断是滑动还是点击
+            const t = e.changedTouches[0];
+            const dx = t.clientX - touchStartX;
+            const dy = t.clientY - touchStartY;
+            const dt = Date.now() - touchStartTime;
+            dragging = false;
+            if (state.lightboxScale <= 1
+                && Math.abs(dx) > 50
+                && Math.abs(dx) > Math.abs(dy) * 1.4
+                && dt < 600) {
+              // 水平滑动 → 切换图片
+              if (dx < 0) shiftLightbox(1);
+              else shiftLightbox(-1);
+            }
+          }
         });
       }
     }
@@ -622,6 +714,7 @@
     modal.hidden = false;
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
     buildLightbox();
   }
 
@@ -633,6 +726,7 @@
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     modal.hidden = true;
+    document.body.classList.remove("lightbox-open");
   }
 
   function initLightboxTriggers() {
