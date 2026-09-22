@@ -2095,31 +2095,6 @@
     document.title = `${work.title} - 项目 - 谢琬滢 Xiewanying`;
     const hasCapabilities = work.capabilities?.length;
     const hasReport = !!work.report;
-    const styleBlendHTML = `
-      <section class="project-styleboard reveal-on-scroll">
-        <div class="project-styleboard__head">
-          <p class="project-styleboard__eyebrow">项目页改版方向</p>
-          <h2>把 A、B、C 组合成一个统一体验</h2>
-          <p class="project-styleboard__lead">A 负责氛围，B 负责审美把关，C 负责交互点睛，内容结构保持克制，视觉和动效做更完整的收口。</p>
-        </div>
-        <div class="project-styleboard__grid">
-          <article class="project-stylecard project-stylecard--a">
-            <span class="project-stylecard__key">A</span>
-            <h3>治愈可爱风</h3>
-            <p>软圆角、浅底色、轻浮雕和更松弛的留白，适合首页首屏、项目概览和情绪感较强的内容。</p>
-          </article>
-          <article class="project-stylecard project-stylecard--b">
-            <span class="project-stylecard__key">B</span>
-            <h3>审美把关</h3>
-            <p>保留现有编辑感和信息层级，只对排版、间距、配色与组件关系做统一打磨，避免过度花哨。</p>
-          </article>
-          <article class="project-stylecard project-stylecard--c">
-            <span class="project-stylecard__key">C</span>
-            <h3>交互点睛</h3>
-            <p>把粒子、hover、滚动和弹窗这类特效放到合适模块，只在关键位置加亮点，不铺满全页。</p>
-          </article>
-        </div>
-      </section>`;
     const simHTML = work.slug === "dabao-pet" && work.petDemo ? `
       <section class="dabao-demo reveal-on-scroll">
         <p class="dabao-demo__hint">点一下达宝，打开它的工作台 · 所有窗口都能拖动到你喜欢的位置</p>
@@ -2629,7 +2604,6 @@
         <section class="project-detail__summary reveal-on-scroll">
           <p>${work.summary}</p>
         </section>
-        ${styleBlendHTML}
         ${simHTML}
         ${bodyHTML}
       </section>
