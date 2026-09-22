@@ -1325,6 +1325,11 @@
     const dotsWrap = root.querySelector("[data-cat-dots]");
     if (!track || !slides.length) return;
 
+    // 移动端：所有卡片同等显示，点击直接走 <a href> 跳转，不走 carousel 3D 切换
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      return;
+    }
+
     let active = 1;
     const total = slides.length;
     let transitionTimer = null;

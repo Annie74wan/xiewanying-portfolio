@@ -662,10 +662,10 @@ const videoWorks = [
     description: [],
     stills: [],
     travelVideos: [
-      { src: "./assets/video/自媒体/gatsby-lookalike-web.mp4", poster: "./assets/video/自媒体/cover-page.jpg", thumb: "./assets/video/自媒体/微信图片_20260626090012_25_3.jpg" },
-      { src: "./assets/video/自媒体/carriage-film-web.mp4", poster: "./assets/video/自媒体/cover-page.jpg", thumb: "./assets/video/自媒体/微信图片_20260626085727_24_3.jpg" },
-      { src: "./assets/video/自媒体/opening-title.mov", poster: "./assets/video/自媒体/cover-page.jpg", thumb: "./assets/video/自媒体/DSCF8087.jpg" },
-      { src: "./assets/video/自媒体/04.mp4", poster: "./assets/video/自媒体/cover-page.jpg", thumb: "./assets/video/自媒体/微信图片_20260626084315_23_3.jpg" }
+      { src: "./assets/video/自媒体/gatsby-lookalike-web.mp4", poster: "./assets/video/自媒体/微信图片_20260626090012_25_3.jpg", thumb: "./assets/video/自媒体/微信图片_20260626090012_25_3.jpg" },
+      { src: "./assets/video/自媒体/carriage-film-web.mp4", poster: "./assets/video/自媒体/微信图片_20260626085727_24_3.jpg", thumb: "./assets/video/自媒体/微信图片_20260626085727_24_3.jpg" },
+      { src: "./assets/video/自媒体/opening-title.mov", poster: "./assets/video/自媒体/DSCF8087.jpg", thumb: "./assets/video/自媒体/DSCF8087.jpg" },
+      { src: "./assets/video/自媒体/04.mp4", poster: "./assets/video/自媒体/微信图片_20260626084315_23_3.jpg", thumb: "./assets/video/自媒体/微信图片_20260626084315_23_3.jpg" }
     ]
   }
 ];

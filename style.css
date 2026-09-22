@@ -2271,6 +2271,10 @@ figcaption,
 .dabao-win__avatar {
   font-size: 1.2rem;
   flex-shrink: 0;
+  /* 移动端：iOS Apple Color Emoji 会渲染为彩色贴纸，与桌面观感不一致。
+     这里强制使用文字样式（iOS 15.4+ / Safari 15.4+ 生效），并给旧版 iOS 一个灰度回退。 */
+  font-variant-emoji: text;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Helvetica Neue', system-ui, sans-serif;
 }
 
 .dabao-win__hint-small {
@@ -2370,7 +2374,7 @@ figcaption,
   transform: translateY(-2px);
 }
 
-.dabao-win__item-icon { font-size: 1.2rem; flex-shrink: 0; }
+.dabao-win__item-icon { font-size: 1.2rem; flex-shrink: 0; font-variant-emoji: text; }
 
 .dabao-win__item-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .dabao-win__item-text strong { font-size: 0.82rem; color: var(--dabao-text); font-weight: 600; }
@@ -3397,9 +3401,16 @@ figcaption {
     bottom: 14px;
   }
 
-  /* === 移动端优化：抽屉收纳社交图标 === */
+  /* === 移动端优化：header-actions 缩到紧凑尺寸，保留在右上角 === */
   .header-actions {
-    display: none;
+    display: flex;
+    gap: 10px;
+    justify-self: end;
+    align-items: center;
+  }
+  .header-icon {
+    width: 16px;
+    height: 16px;
   }
 
   /* === 移动端优化：lightbox 触控目标放大到 48px === */
